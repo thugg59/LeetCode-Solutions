@@ -21,9 +21,3 @@ class Solution:
         else:           
             return max_pal     
 
-s = "babbab"
-
-chars = {
-    "b" : [0, 2, 3, 5],
-    "a" : [1, 4]
-}
