@@ -1,23 +1,39 @@
+# Expand around center approach
+
 class Solution:
     def longestPalindrome(self, s: str) -> str:
 
-        chars = {}
-        max_len = 1
+        max_size = 1
+        cur_pal = s[0]
+        max_pal = s[0]
+        r = 0
+        l = 0
 
         for i in range(len(s)):
-            if s[i] not in chars:
-                chars[s[i]] = [i]
-            else:
-                chars[s[i]].append(i)
 
-                for j in range(len(chars[s[i]]) - 1):
+            for j in range(2):
+                if j == 0:
+                    # odd
+                    l = i - 1
+                    r = i + 1
+                else:
+                    # even
+                    l = i
+                    r = i + 1
 
-                    if len(s[chars[s[i]][j]:i + 1]) > max_len and s[chars[s[i]][j]:i + 1] == s[chars[s[i]][j]:i + 1][::-1]:
-                        max_pal = s[chars[s[i]][j]:i + 1]
-                        max_len = len(max_pal)
 
-        if max_len == 1:
-            return s[0] 
-        else:           
-            return max_pal     
+                while l >= 0 and r < len(s):
 
+                    if s[l] == s[r]:
+                        cur_pal = s[l:r + 1]
+
+                        if len(cur_pal) > max_size:
+                            max_size = len(cur_pal)
+                            max_pal = s[l:r + 1]
+                    else:
+                        break
+
+                    l -= 1
+                    r += 1
+                    
+        return max_pal
