@@ -4,8 +4,8 @@ class Solution:
     def longestPalindrome(self, s: str) -> str:
 
         max_size = 1
-        cur_pal = s[0]
-        max_pal = s[0]
+        cur_len = 1
+        start = 0
         r = 0
         l = 0
 
@@ -25,15 +25,15 @@ class Solution:
                 while l >= 0 and r < len(s):
 
                     if s[l] == s[r]:
-                        cur_pal = s[l:r + 1]
+                        cur_len = r - l + 1
 
-                        if len(cur_pal) > max_size:
-                            max_size = len(cur_pal)
-                            max_pal = s[l:r + 1]
+                        if cur_len > max_size:
+                            max_size = cur_len
+                            start = l
                     else:
                         break
 
                     l -= 1
                     r += 1
-                    
-        return max_pal
+
+        return s[start:start + max_size]
