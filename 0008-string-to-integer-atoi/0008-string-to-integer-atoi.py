@@ -2,13 +2,12 @@ class Solution:
     def myAtoi(self, s: str) -> int:
 
         positive = True
-        digits = []
+        solution = 0
 
         for i in range(len(s)):
             if s[i].isdigit():
                 if i + 1 >= len(s) or not s[i + 1].isdigit():
-                    digits.append(s[i])
-                    solution = int(''.join(digits))
+                    solution = solution * 10 + int(s[i])
                     if positive:
                         if solution > 2147483647:
                             return 2147483647
@@ -24,9 +23,8 @@ class Solution:
                         continue
                     else:
                         while i < len(s) and s[i].isdigit():
-                            digits.append(s[i])
+                            solution = solution * 10 + int(s[i])
                             i += 1
-                        solution = int(''.join(digits))
                         if positive:
                             if solution > 2147483647:
                                 return 2147483647
