@@ -20,7 +20,7 @@ class Solution:
                         else:
                             return -solution
                 else:
-                    if s[i] == 0:
+                    if int(s[i]) == 0:
                         continue
                     else:
                         while i < len(s) and s[i].isdigit():
